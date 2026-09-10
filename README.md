@@ -1,5 +1,5 @@
 SAA7231（圆刚 A328 / [1131:7231]）Debian 11驱动程序的编译与加载
-驱动来源：BlackGold Technology官方提供的Linux驱动程序（marcusbirkin/BGT3xxx，GPL协议）。该驱动版本已针对kernel 5.10进行过优化，专为Debian 11（5.10.0-46-amd64）系统设计。
+该驱动版本已针对kernel 5.10进行过优化，专为Debian 11（5.10.0-46-amd64）系统设计。
 
 已做的适配 (相对上游)
 saa7231_drv.c
@@ -15,7 +15,6 @@ Makefile
 改为独立 out-of-tree 编译，自动探测 dvb-core 头文件位置。
 使用步骤（在 Debian 上，需使用 root 权限）
 1. 传代码（在 Windows PowerShell中）
-scp -r "C:\Users\许小军\Doubao\chats\2026-08-29\new-chat\saa7231_re\saa7231_debian" xxj@192.168.10.154:/home/xxj/A328_D_Driver
 2. 环境诊断
 su -
 cd /home/xxj/A328_D_Driver
@@ -47,7 +46,7 @@ i2cdetect -y <bus>                 # 逐个探测 0x00-0x7f
 TDA18271的常见地址为0x60；LGS8G75的常见地址则为0x1b或0x08（需通过探测来确定）。请将探测结果反馈过来——这将是第二阶段编写frontend_attach函数时所需依据的资料。
 
 安全说明
-该驱动程序是BlackGold官方提供的GPL授权驱动。在进行探测时所进行的寄存器写入操作（即CGU/MSI/I2C的初始化操作），其实属于SAA7231芯片的标准初始化流程。由于它与A328属于同一种芯片，因此风险是可以控制的。
+
 第一阶段frontend_attach为空，不会触碰LGS8G75/TDA18271的未知寄存器。
 装载前确保无残留模块: rmmod saa7231_drv saa7231_core 2>/dev/null
 第二阶段预告
