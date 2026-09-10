@@ -1,17 +1,27 @@
 本驱动适用以下硬件
+
 PCI\VEN_1131&DEV 7231&SUBSYS 83231461&REV AA
+
 PCI\VEN_1131&DEV 7231&SUBSYS 02031461&REV AA
 
-
 SAA7231（圆刚 A328 / [1131:7231]）Debian 11驱动程序的编译与加载
+
 该驱动版本已针对kernel 5.10进行过优化，专为Debian 11（5.10.0-46-amd64）系统设计。
 
 已做的适配 (相对上游)
+
 saa7231_drv.c
 
-屏蔽所有DVB-frontend相关的组件（cxd2850/cxd2817/cxd2861/tda18272/stv090x/stv6110x/lnbh24/tda10048/s5h1411/cxd2820r/a8290）。这些芯片在5.10版本中并不存在，而且A328也根本不需要它们。
-frontend_attach 第一阶段改为使用空stub（仅注册DVB适配器，而不连接前端设备）。这样做的目的是先激活芯片内部的4条I2C总线，然后通过i2cdetect来检测LGS8G75（DTMB解调模块）和TDA18271（调谐模块）分别连接在哪条总线上。
+屏蔽所有DVB-frontend相关的组件
+
+（cxd2850/cxd2817/cxd2861/tda18272/stv090x/stv6110x/lnbh24/tda10048/s5h1411/cxd2820r/a8290）。这些芯片在5.10版本中并不存
+在，而且A328也根本不需要它们。
+
+frontend_attach 第一阶段改为使用空stub（仅注册DVB适配器，而不连接前端设备）。这样做的目的是先激活芯片内部的4条I2C总线，然后通过
+i2cdetect来检测LGS8G75（DTMB解调模块）和TDA18271（调谐模块）分别连接在哪条总线上。
+
 屏蔽 v4l2 视频功能相关 include（视频功能本驱动未启用）。
+
 saa7231_pci.c
 
 修复了上游漏洞：msi_vectors_max 中使用了未初始化的msi_cap（数据读取顺序错误），在5.10版本中这可能会导致获取到无效数据，进而引发内存分配异常。现已将pci_read_config_dword(0x40)移到使用之前进行初始化处理。
