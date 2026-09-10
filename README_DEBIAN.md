@@ -1,6 +1,6 @@
 # SAA7231 (圆刚 A328 / [1131:7231]) Debian 11 驱动编译与装载
 
-驱动来源: BlackGold Technology 官方 Linux 驱动 (marcusbirkin/BGT3xxx, GPL)
+
 本目录是经过 **kernel 5.10 适配** 的版本，专用于 Debian 11 (5.10.0-46-amd64)。
 
 ## 已做的适配 (相对上游)
@@ -24,8 +24,6 @@
 ## 使用步骤 (在 Debian 上, 用 root)
 
 ### 1. 传代码 (在 Windows PowerShell)
-```
-scp -r "C:\Users\许小军\Doubao\chats\2026-08-29\new-chat\saa7231_re\saa7231_debian" xxj@192.168.10.154:/home/xxj/A328_D_Driver
 ```
 
 ### 2. 环境诊断
