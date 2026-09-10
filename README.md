@@ -1,3 +1,8 @@
+本驱动适用以下硬件
+PCI\VEN_1131&DEV 7231&SUBSYS 83231461&REV AA
+PCI\VEN_1131&DEV 7231&SUBSYS 02031461&REV AA
+
+
 SAA7231（圆刚 A328 / [1131:7231]）Debian 11驱动程序的编译与加载
 该驱动版本已针对kernel 5.10进行过优化，专为Debian 11（5.10.0-46-amd64）系统设计。
 
